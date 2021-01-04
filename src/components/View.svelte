@@ -7,38 +7,6 @@
   import mermaid from '@mermaid';
 
   const detectType = (text) => {
-    text = text.replace(/^\s*%%.*\n/g, '\n');
-    console.debug('Detecting diagram type based on the text ' + text);
-    if (text.match(/^\s*sequenceDiagram/)) {
-      return 'sequence';
-    }
-
-    if (text.match(/^\s*gantt/)) {
-      return 'gantt';
-    }
-
-    if (text.match(/^\s*classDiagram/)) {
-      return 'class';
-    }
-
-    if (text.match(/^\s*stateDiagram/)) {
-      return 'state';
-    }
-
-    if (text.match(/^\s*gitGraph/)) {
-      return 'git';
-    }
-    if (text.match(/^\s*flowchart/)) {
-      return 'flowchart';
-    }
-
-    if (text.match(/^\s*info/)) {
-      return 'info';
-    }
-    if (text.match(/^\s*pie/)) {
-      return 'pie';
-    }
-
     return 'flowchart';
   };
 
@@ -64,12 +32,19 @@
   };
 
   export let code = '';
+  export let mermaidConfig = '';
   export let configClasses = '';
   export let codeClasses = '';
   const unsubscribe = codeStore.subscribe((state) => {
     try {
       if (container && state) {
-        code = state.code;
+        code = `graph TD
+              A[Christmas] -->|Get money| B(Go shopping)
+              B --> C{Let me think}
+              C -->|One| D[Laptop]
+              C -->|Two| E[iPhone]
+              C -->|Three| F[fa:fa-car Car]
+                `;
 
         // mermaid.parse(code)
         // Replacing special characters '<' and '>' with encoded '&lt;' and '&gt;'
@@ -80,7 +55,8 @@
         container.innerHTML = _code;
         saveStatistcs(detectType(code));
         delete container.dataset.processed;
-        mermaid.initialize(Object.assign({}, state.mermaid));
+        mermaidConfig = 'default';
+        mermaid.initialize(Object.assign({}, mermaidConfig));
         mermaid.init(undefined, container);
         if (code) mermaid.render('graph-div', code, insertSvg);
       }

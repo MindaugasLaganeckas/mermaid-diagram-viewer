@@ -1,12 +1,9 @@
 <script>
   import { onMount } from 'svelte';
   import { codeStore, updateCode, updateCodeStore } from '../code-store.js';
-  import Editor from '../components/Editor.svelte';
-  import Config from '../components/Config.svelte';
   import View from '../components/View.svelte';
   import Card from '../components/Card.svelte';
   import Tag from '../components/Tag.svelte';
-  import Links from '../components/Links.svelte';
   import { fromUrl } from '../code-store.js';
   // import pkg from '@mermaid-js/mermaid/package.json'
   import pkg from '@mermaid/package.json';
@@ -265,106 +262,13 @@
 
 <div id="body">
   <div id="title-container">
-    <h1 id="app-title">Mermaid Live Editor</h1>
-  </div>
-  <div id="sampleLoader">
-    <div class="button-container">
-      <span id="sampleLoaderTitle"><strong>Diagram presets:</strong></span>
-      <button class="button-style" on:click={loadFlowChart}>
-        Flow Chart
-      </button>
-      <button class="button-style" on:click={loadSequenceDiagram}>
-        Sequence Diagram
-      </button>
-      <button class="button-style" on:click={loadClassDiagram}>
-        Class Diagram
-      </button>
-      <button class="button-style" on:click={loadStateDiagram}>
-        State Diagram
-      </button>
-      <button class="button-style" on:click={loadGanttChart}>
-        Gantt Chart
-      </button>
-      <button class="button-style" on:click={loadPieChart}> Pie Chart </button>
-      <button class="button-style" on:click={loadERDiagram}>
-        ER Diagram
-      </button>
-    </div>
+    <h1 id="app-title">Mermaid Diagram Viewer</h1>
   </div>
   <div id="editor-root">
-    <div id="col1">
-      <Card title="Code" noPadding="true">
-        <Editor data={params.data} />
-      </Card>
-      <Card title="Mermaid Configuration">
-        <Config />
-      </Card>
-    </div>
     <div id="col2">
       <Card title="Preview">
         <View />
       </Card>
-      <div id="link-root">
-        <div id="link-col1">
-          <Card title="Editing history">
-            <span id="historyLoaderSubTitle">Automatically saves once every
-              minute, up to 10 records.</span>
-            <br />
-            <div id="historyList" class="button-container">
-              {#if historyList.length > 0}
-                {#each historyList as item, i}
-                  <button
-                    class="button-style"
-                    on:click={(e) => toUpdateCodeStore(item.code)}>
-                    {relativeTime(item.time)}
-                  </button>
-                {/each}
-              {:else}No records.{/if}
-            </div>
-          </Card>
-          <Card title="Links">
-            <div class="button-container">
-              <button class="button-style">
-                <a
-                  href="https://mermaid-js.github.io/mermaid"
-                  target="_blank"
-                  class="link-style">
-                  Mermaid Documentation
-                </a>
-              </button>
-              <button class="button-style">
-                <a
-                  href="https://github.com/mermaid-js/mermaid"
-                  target="_blank"
-                  class="link-style">
-                  Mermaid on GitHub
-                </a>
-              </button>
-              <button class="button-style">
-                <a
-                  href="https://github.com/mermaid-js/mermaid-live-editor"
-                  target="_blank"
-                  class="link-style">
-                  Live Editor on GitHub
-                </a>
-              </button>
-              <button class="button-style">
-                <a
-                  href="https://github.com/mermaid-js/mermaid-cli"
-                  target="_blank"
-                  class="link-style">
-                  Mermaid CLI
-                </a>
-              </button>
-            </div>
-          </Card>
-        </div>
-        <div id="link-col2">
-          <Card title="Actions">
-            <Links />
-          </Card>
-        </div>
-      </div>
     </div>
   </div>
   <div id="power">
