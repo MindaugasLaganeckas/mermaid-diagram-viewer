@@ -1,6 +1,6 @@
 {
-  "name": "mermaid-live-editor",
-  "version": "1.2.0",
+  "name": "mermaid-diagram-viewer",
+  "version": "0.0.1",
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^5.2.0",
@@ -26,10 +26,10 @@
     "pretty": "prettier --write ./src/*"
   },
   "dependencies": {
-    "mermaid": "8.8.4",
     "js-base64": "^2.5.1",
     "json-lint": "^0.1.0",
     "jsonlint": "^1.6.3",
+    "mermaid": "8.8.4",
     "moment": "^2.24.0",
     "monaco-editor": "0.18.1",
     "svelte-routing": "^1.4.0",

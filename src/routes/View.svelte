@@ -1,21 +1,8 @@
 <script>
-  import { onMount } from 'svelte';
-  import Editor from '../components/Editor.svelte';
   import View from '../components/View.svelte';
-  // import { fromUrl } from '../code-store.js';
-
-  onMount(async () => {
-    // fromUrl(params.data);
-    ga('send', 'pageview');
-  });
-
-  // export let code = '';
-  // export let classes = '';
-
-  // export let error = {};
-  // export let token = '';
-  // export let expected = '';
-  // export let params = {};
+  import pkg from '@mermaid/package.json';
+  export let mermaidVersion = pkg.version;
+  import Tag from '../components/Tag.svelte';
 </script>
 
 <style>
@@ -27,4 +14,8 @@
 
 <div id="view-page">
   <View />
+  <div id="power">
+    Powered by mermaid
+    <Tag color="green">{mermaidVersion}</Tag>
+  </div>
 </div>

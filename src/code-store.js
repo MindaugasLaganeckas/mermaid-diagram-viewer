@@ -36,7 +36,7 @@ export const fromUrl = (data) => {
 };
 export const updateCodeStore = (newState) => {
   codeStore.set(newState);
-  replace('/edit/' + Base64.encodeURI(JSON.stringify(newState)));
+  replace('/view/' + Base64.encodeURI(JSON.stringify(newState)));
 };
 export const updateCode = (code, updateEditor) => {
   const state = get(codeStore);
@@ -51,5 +51,5 @@ export const updateConfig = (config) => {
 };
 
 const unsubscribe = codeStore.subscribe((state) => {
-  replace('/edit/' + Base64.encodeURI(JSON.stringify(state)));
+  replace('/view/' + Base64.encodeURI(JSON.stringify(state)));
 });
